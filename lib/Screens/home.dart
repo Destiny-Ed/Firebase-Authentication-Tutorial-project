@@ -9,7 +9,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  String email = FirebaseAuth.instance.currentUser.email;
+  String user = FirebaseAuth.instance.currentUser.email == null
+      ? FirebaseAuth.instance.currentUser.phoneNumber
+      : FirebaseAuth.instance.currentUser.email;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,7 +31,7 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
       body: Center(
-        child: Text("Email $email"),
+        child: Text("Email $user"),
       ),
     );
   }

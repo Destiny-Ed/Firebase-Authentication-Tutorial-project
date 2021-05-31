@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterFcm/Provider/auth_provider.dart';
+import 'package:flutterFcm/Screens/AuthScreen/phone_auth.dart';
 import 'package:flutterFcm/Screens/AuthScreen/register.dart';
 import 'package:flutterFcm/Screens/AuthScreen/reset.dart';
 
@@ -123,21 +124,37 @@ class _LoginPageState extends State<LoginPage> {
                         height: 10,
                       ),
                       GestureDetector(
-                          onTap: () {
-                            AuthClass()
-                                .signInWithFacebook()
-                                .then((UserCredential value) {
-                              Navigator.pushAndRemoveUntil(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => HomePage()),
-                                  (route) => false);
-                            });
-                          },
-                          child: Container(
-                              color: Colors.blue,
-                              padding: const EdgeInsets.all(10),
-                              child: Text("Continue with facebook")))
+                        onTap: () {
+                          AuthClass()
+                              .signInWithFacebook()
+                              .then((UserCredential value) {
+                            Navigator.pushAndRemoveUntil(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => HomePage()),
+                                (route) => false);
+                          });
+                        },
+                        child: Container(
+                          color: Colors.blue,
+                          padding: const EdgeInsets.all(10),
+                          child: Text("Continue with facebook"),
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => PhoneAuth()));
+                        },
+                        child: Container(
+                          padding: const EdgeInsets.all(10),
+                          color: Colors.amber,
+                          margin: const EdgeInsets.symmetric(vertical: 50),
+                          child: Text("Continue with phone"),
+                        ),
+                      )
                     ],
                   )
                 ],
